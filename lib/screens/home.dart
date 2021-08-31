@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/constants/theme.dart';
+import 'package:frontend/screens/admin.dart';
 import 'package:frontend/widgets/card-small.dart';
 
 //widgets
@@ -59,8 +60,15 @@ class Home extends StatelessWidget {
                       flex: 4,
                       tap: () {
                         Navigator.pushNamed(context, '/pro');
-                      })
-                ],
+                      }),
+                  ElevatedButton(onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyStatefulWidget()),
+                    );
+                  }, child: Text('Open route')),
+
+            ],
               ),
       ),
     );
