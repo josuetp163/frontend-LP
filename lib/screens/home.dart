@@ -1,75 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/constants/theme.dart';
 import 'package:frontend/screens/admin.dart';
+import 'package:frontend/screens/siteWidget.dart';
 import 'package:frontend/widgets/card-small.dart';
 
 //widgets
 
 final Map<String, Map<String, String>> homeCards = {
-  "Ice Cream": {
-    "title": "Ice cream is made with carrageenan …",
+  "hueca1": {
+    "title": "Las Comidas de Edwin",
+    "localizacion": "222, 111, 333",
+    "Ciudad": "Guayaquil",
+    "Descripcion": "El mejor encebollado que puedes encontrar en la cuidad de Guayaquil.",
     "image":
-        "https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80"
+    "https://media-cdn.tripadvisor.com/media/photo-p/13/05/aa/e0/photo0jpg.jpg"
   },
-  "Makeup": {
-    "title": "Is makeup one of your daily esse …",
+  "hueca2": {
+    "title": "Chifa P. Kong",
+    "localizacion": "111, 222, 333",
+    "Ciudad": "Guayaquil",
+    "Descripcion": "La mejor comida asiatica de todo el Ecuador.",
     "image":
-        "https://images.unsplash.com/photo-1519368358672-25b03afee3bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2004&q=80"
-  },
-  "Coffee": {
-    "title": "Coffee is more than just a drink: It’s …",
-    "image":
-        "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
-  },
-  "Fashion": {
-    "title": "Fashion is a popular style, especially in …",
-    "image":
-        "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80"
-  },
-  "Argon": {
-    "title": "Argon is a great free UI packag …",
-    "image":
-        "https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80"
+    "https://saposyprincesas.elmundo.es/wp-content/uploads/2016/04/fideos-lo-mein.jpg"
   }
 };
+
 
 class Home extends StatelessWidget {
   // final GlobalKey _scaffoldKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Huecas")),
+      appBar: AppBar(
+          title: Text("Huecas"),
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyStatefulWidget()),
+                  );
+                },
+                child: Icon(
+                  Icons.people,
+                  size: 26.0,
+                ),
+              )
+          )
+        ],
+      ),
       backgroundColor: ThemeColors.bgColorScreen,
       // key: _scaffoldKey,
       body: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Row(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0,bottom: 25, top: 25),
+          child: Column(
             children: [
                   CardSmall(
-                      cta: "View article",
-                      title: homeCards["Makeup"]!['title'].toString(),
-                      img: homeCards["Makeup"]!['image'].toString(),
-                      flex: 6,
-                      tap: () {
-                        Navigator.pushNamed(context, '/pro');
-                      }),
+                      cta: homeCards["hueca1"]!['Descripcion'].toString(),
+                      title: homeCards["hueca1"]!['title'].toString(),
+                      img: homeCards["hueca1"]!['image'].toString(),),
                   CardSmall(
-                      cta: "View article",
-                      title: homeCards["Coffee"]!['title'].toString(),
-                      img: homeCards["Coffee"]!['image'].toString(),
-                      flex: 4,
-                      tap: () {
-                        Navigator.pushNamed(context, '/pro');
-                      }),
-                  ElevatedButton(onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyStatefulWidget()),
-                    );
-                  }, child: Text('Open route')),
-
+                      cta: homeCards["hueca2"]!['Descripcion'].toString(),
+                      title: homeCards["hueca2"]!['title'].toString(),
+                      img: homeCards["hueca2"]!['image'].toString(),
+                  ),
             ],
-              ),
+          ),
       ),
     );
   }

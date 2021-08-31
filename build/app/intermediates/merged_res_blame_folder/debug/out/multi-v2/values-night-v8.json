@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\REDMI\\Desktop\\frontend-LP\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "D:\\Universidad\\6 Semestre\\Lenguajes de Programacion\\Proyecto2\\frontend\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\REDMI\\Desktop\\frontend-LP\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\Universidad\\6 Semestre\\Lenguajes de Programacion\\Proyecto2\\frontend\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

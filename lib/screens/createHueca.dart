@@ -48,8 +48,8 @@ class MyCustomFormState extends State<CreateHueca> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    return Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -142,7 +142,6 @@ class MyCustomFormState extends State<CreateHueca> {
                 ],
               ),
             )
-        )
-    );
+        );
   }
 }
