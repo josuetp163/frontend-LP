@@ -28,32 +28,23 @@ class UpdateHueca extends StatelessWidget {
   const UpdateHueca({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ThemeColors.bgColorScreen,
-      // key: _scaffoldKey,
-      body: Container(
-
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CardSmall(
-                cta: homeCards["hueca1"]!['title'].toString(),
-                title: homeCards["hueca1"]!['Descripcion'].toString(),
-                img: homeCards["hueca1"]!['image'].toString(),
-                flex: 6,
-                tap: () {
-                }),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-            ),
-            CardSmall(
-                cta: homeCards["hueca2"]!['title'].toString(),
-                title: homeCards["hueca2"]!['Descripcion'].toString(),
-                img: homeCards["hueca2"]!['image'].toString(),
-                flex: 6,),
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.only(left: 24.0, right: 24.0,bottom: 25, top: 25),
+      child: Column(
+        children: [
+          CardSmall(
+              cta: homeCards["hueca1"]!['Descripcion'].toString(),
+              title: homeCards["hueca1"]!['title'].toString(),
+              img: homeCards["hueca1"]!['image'].toString(),
+              tap: () {
+              }),
+          CardSmall(
+              cta: homeCards["hueca2"]!['Descripcion'].toString(),
+              title: homeCards["hueca2"]!['title'].toString(),
+              img: homeCards["hueca2"]!['image'].toString(),
+              tap: () {
+              }),
+        ],
       ),
     );
   }
