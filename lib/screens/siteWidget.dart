@@ -72,65 +72,92 @@ class Site extends StatelessWidget {
                       children: _createComments(comments),
                     ),
                   ),
-                  Expanded(
-                    child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            Text("Agrega tu comentario"),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Nombre *',
-                              ),
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
-                                }
-                                newComments.add(value);
-                                return null;
-                              },
-                            ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Comentario *',
-                              ),
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null ||
-                                    value.isEmpty ||
-                                    newComments.isEmpty) {
-                                  return 'Please enter some text';
-                                }
-                                newComments.add(value);
-                                return null;
-                              },
-                            ),
-                            ElevatedButton(
-                              child: Text("Comentar"),
-                              onPressed: () {
-                                // Validate returns true if the form is valid, or false otherwise.
-                                if (_formKey.currentState!.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-                                  comments.add(newComments);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Processing Data')),
-                                  );
-                                }
-                              },
-                            )
-                          ],
-                        )),
-                  ),
                 ],
               ),
             )),
           ]),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+          showMessageDialog(context);
+        },
+        child: const Icon(Icons.message),
+        backgroundColor: Colors.lightBlue,
+      ),
     );
+  }
+
+  showMessageDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Añada su comentario"),
+            content: Expanded(
+              child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Text("Agrega tu comentario"),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Nombre *',
+                        ),
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          newComments.add(value);
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Comentario *',
+                        ),
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              newComments.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          newComments.add(value);
+                          return null;
+                        },
+                      ),
+                      RatingBar.builder(
+                          initialRating: 5,
+                          itemSize: 25,
+                          itemBuilder: (context, _) => Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          }),
+                    ],
+                  )),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: Text("Comentar"),
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false otherwise.
+                  if (_formKey.currentState!.validate()) {
+                    // If the form is valid, display a snackbar. In the real world,
+                    // you'd often call a server or save the information in a database.
+                    comments.add(newComments);
+                    Navigator.of(context).pop();
+                  }
+                },
+              )
+            ],
+          );
+        });
   }
 
   List<Widget> _createComments(comments) {
