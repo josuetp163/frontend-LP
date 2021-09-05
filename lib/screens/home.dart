@@ -11,9 +11,10 @@ final Map<String, Map<String, String>> homeCards = {
     "title": "Las Comidas de Edwin",
     "localizacion": "222, 111, 333",
     "Ciudad": "Guayaquil",
-    "Descripcion": "El mejor encebollado que puedes encontrar en la cuidad de Guayaquil.",
+    "Descripcion":
+        "El mejor encebollado que puedes encontrar en la cuidad de Guayaquil.",
     "image":
-    "https://media-cdn.tripadvisor.com/media/photo-p/13/05/aa/e0/photo0jpg.jpg"
+        "https://media-cdn.tripadvisor.com/media/photo-p/13/05/aa/e0/photo0jpg.jpg"
   },
   "hueca2": {
     "title": "Chifa P. Kong",
@@ -21,10 +22,9 @@ final Map<String, Map<String, String>> homeCards = {
     "Ciudad": "Guayaquil",
     "Descripcion": "La mejor comida asiatica de todo el Ecuador.",
     "image":
-    "https://saposyprincesas.elmundo.es/wp-content/uploads/2016/04/fideos-lo-mein.jpg"
+        "https://saposyprincesas.elmundo.es/wp-content/uploads/2016/04/fideos-lo-mein.jpg"
   }
 };
-
 
 class Home extends StatelessWidget {
   // final GlobalKey _scaffoldKey = new GlobalKey();
@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Huecas"),
+        title: Text("Huecas"),
         actions: [
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -47,27 +47,27 @@ class Home extends StatelessWidget {
                   Icons.people,
                   size: 26.0,
                 ),
-              )
-          )
+              ))
         ],
       ),
       backgroundColor: ThemeColors.bgColorScreen,
       // key: _scaffoldKey,
       body: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0,bottom: 25, top: 25),
-          child: Column(
-            children: [
-                  CardSmall(
-                      cta: homeCards["hueca1"]!['Descripcion'].toString(),
-                      title: homeCards["hueca1"]!['title'].toString(),
-                      img: homeCards["hueca1"]!['image'].toString(),),
-                  CardSmall(
-                      cta: homeCards["hueca2"]!['Descripcion'].toString(),
-                      title: homeCards["hueca2"]!['title'].toString(),
-                      img: homeCards["hueca2"]!['image'].toString(),
-                  ),
-            ],
-          ),
+        padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 25, top: 25),
+        child: Column(
+          children: [
+            CardSmall(
+              cta: homeCards["hueca1"]!['Descripcion'].toString(),
+              title: homeCards["hueca1"]!['title'].toString(),
+              img: homeCards["hueca1"]!['image'].toString(),
+            ),
+            CardSmall(
+              cta: homeCards["hueca2"]!['Descripcion'].toString(),
+              title: homeCards["hueca2"]!['title'].toString(),
+              img: homeCards["hueca2"]!['image'].toString(),
+            ),
+          ],
+        ),
       ),
     );
   }
