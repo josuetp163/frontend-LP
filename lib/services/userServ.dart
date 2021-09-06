@@ -14,7 +14,7 @@ class SpotHttp {
       List<dynamic> users = userData["results"];
       return users.map((json) => User.fromJson(json)).toList();
     } else {
-      throw Exception("Problem en getSpotList: ${response.statusCode}");
+      throw Exception("Problem en getUserList: ${response.statusCode}");
     }
   }
 
@@ -31,7 +31,7 @@ class SpotHttp {
     if (response.statusCode == 200) {
       return User.fromJson(convert.jsonDecode(response.body));
     } else {
-      throw Exception("Problem en postSpot: ${response.statusCode}");
+      throw Exception("Problem en postUser: ${response.statusCode}");
     }
   }
 }
