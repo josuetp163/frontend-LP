@@ -27,7 +27,7 @@ class Spot {
     return "spot:$spotName - city:$city - description:$description";
   }
 
-  factory Spot.fromJson(Map<String, dynamic> json) => _$SpotFromJson(json);
+  factory Spot.fromJson(dynamic json) => _$SpotFromJson(json);
 
   Map<String, dynamic> toJson() => _$SpotToJson(this);
 }

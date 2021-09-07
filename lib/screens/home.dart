@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:frontend/constants/theme.dart';
 import 'package:frontend/screens/admin.dart';
@@ -57,31 +59,31 @@ class Home extends StatelessWidget {
       backgroundColor: ThemeColors.bgColorScreen,
       // key: _scaffoldKey,
       body: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 25, top: 25),
-        child: Column(
-          children: [
-            CardSmall(
-              cta: homeCards["hueca1"]!['Descripcion'].toString(),
-              title: homeCards["hueca1"]!['title'].toString(),
-              img: homeCards["hueca1"]!['image'].toString(),
-            ),
-            CardSmall(
-              cta: homeCards["hueca2"]!['Descripcion'].toString(),
-              title: homeCards["hueca2"]!['title'].toString(),
-              img: homeCards["hueca2"]!['image'].toString(),
-            ),
-            FutureBuilder(
+        child: FutureBuilder(
                 future: spotserv.getSpotList(),
                 builder:
-                    (BuildContext context, AsyncSnapshot<List<Spot>> snapshot) {
-                  if (snapshot.hasData) {
-                    return Text("Funciona");
+                    (context, AsyncSnapshot<List<Spot>> snapshot) {
+                  if (snapshot.hasData && !snapshot.data.isEmpty) {
+                    final spots = snapshot.data;
+                    return ListView.builder(
+                        itemCount: spots.length,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context,i) => _listaSpots(spots[i])
+                    );
                   }
                   return Text("No funciona");
-                })
-          ],
-        ),
+                }),
       ),
+    );
+  }
+
+
+  Widget _listaSpots(Spot spot) {
+    print(spot);
+    return CardSmall(
+      cta: spot.description,
+      title: spot.spotName,
+      img: spot.image,
     );
   }
 }

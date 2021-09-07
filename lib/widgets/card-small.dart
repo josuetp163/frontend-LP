@@ -27,9 +27,7 @@ class CardSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        flex: flex,
-        child: Container(
+    return Container(
           child: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -42,57 +40,55 @@ class CardSmall extends StatelessWidget {
             );
           },
           child: Card(
-            elevation: 1,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(6.0),
-                                topRight: Radius.circular(6.0)),
-                            image: DecorationImage(
-                              image: NetworkImage(img),
-                              fit: BoxFit.cover,
-                            )))),
-                Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20.0, bottom: 15.0, left: 8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(title,
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(6.0),
+                              topRight: Radius.circular(6.0)),
+                          image: DecorationImage(
+                            image: NetworkImage(img),
+                          ))),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 20.0, bottom: 15.0, left: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(title,
+                            style: TextStyle(
+                                color: ThemeColors.header, fontSize: 22)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text(cta,
                               style: TextStyle(
-                                  color: ThemeColors.header, fontSize: 22)),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Text(cta,
-                                style: TextStyle(
-                                    color: ThemeColors.text,
-                                    fontSize: 17,
-                                )),
-                          ),
-                          RatingBar.builder(
-                              initialRating: 5,
-                              itemSize: 25,
-                              itemBuilder: (context, _) => Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              onRatingUpdate: (rating){
-                                print(rating);
-                              })
-                        ],
-                      ),
-                    ))
-              ],
-            )),
+                                color: ThemeColors.text,
+                                fontSize: 17,
+                              )),
+                        ),
+                        RatingBar.builder(
+                            initialRating: 5,
+                            itemSize: 25,
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating){
+                              print(rating);
+                            })
+                      ],
+                    ),
+                  )
+                ],
+              )
+          ),
       ),
-    ));
+    );
   }
 }
