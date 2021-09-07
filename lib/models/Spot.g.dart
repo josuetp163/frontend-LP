@@ -13,8 +13,9 @@ Spot _$SpotFromJson(Map<String, dynamic> json) {
     spotName: json['spotName'] as String,
     description: json['description'] as String,
     city: json['city'] as String,
-    x: json['x'] as int,
-    y: json['y'] as int,
+    enable: json['enable'] as bool,
+    locationX: json['locationX'] as double,
+    locationY: json['locationX'] as double,
   );
 }
 
@@ -24,6 +25,7 @@ Map<String, dynamic> _$SpotToJson(Spot instance) => <String, dynamic>{
       'spotName': instance.spotName,
       'description': instance.description,
       'city': instance.city,
-      'x': instance.x,
-      'y': instance.y,
+      'enable': instance.enable,
+      'x': instance.locationX,
+      'y': instance.locationY,
     };

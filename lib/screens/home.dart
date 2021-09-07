@@ -4,6 +4,9 @@ import 'package:frontend/screens/admin.dart';
 import 'package:frontend/screens/siteWidget.dart';
 import 'package:frontend/widgets/card-small.dart';
 
+import 'package:frontend/models/Spot.dart';
+import 'package:frontend/services/spotServ.dart';
+
 //widgets
 
 final Map<String, Map<String, String>> homeCards = {
@@ -27,7 +30,8 @@ final Map<String, Map<String, String>> homeCards = {
 };
 
 class Home extends StatelessWidget {
-  // final GlobalKey _scaffoldKey = new GlobalKey();
+  final SpotHttp spotserv = new SpotHttp();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +70,15 @@ class Home extends StatelessWidget {
               title: homeCards["hueca2"]!['title'].toString(),
               img: homeCards["hueca2"]!['image'].toString(),
             ),
+            FutureBuilder(
+                future: spotserv.getSpotList(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<List<Spot>> snapshot) {
+                  if (snapshot.hasData) {
+                    return Text("Funciona");
+                  }
+                  return Text("No funciona");
+                })
           ],
         ),
       ),

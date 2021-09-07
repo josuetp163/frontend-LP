@@ -8,8 +8,9 @@ class Spot {
   late String spotName;
   late String description;
   late String city;
-  late int x;
-  late int y;
+  late bool? enable;
+  late double locationX;
+  late double locationY;
 
   Spot(
       {this.id,
@@ -17,8 +18,9 @@ class Spot {
       required this.spotName,
       required this.description,
       required this.city,
-      required this.x,
-      required this.y});
+      this.enable,
+      required this.locationX,
+      required this.locationY});
 
   @override
   String toString() {

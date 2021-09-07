@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frontend/constants/theme.dart';
 
+import 'package:frontend/models/Spot.dart';
+import 'package:frontend/services/spotServ.dart';
+
 List<List<String>> comments = [
   ["josuetp163", "La mejor comida que he probado"],
   ["edaneras", "No hay mejor comida"]
@@ -170,6 +173,8 @@ class Site extends StatelessWidget {
       lista.add(tempWidget);
       lista.add(Divider());
     }
+    final SpotHttp spotserv = new SpotHttp();
+    spotserv.getSpotList();
     return lista;
   }
 }
