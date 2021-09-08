@@ -2,24 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frontend/constants/theme.dart';
+import 'package:frontend/models/Spot.dart';
 import 'package:frontend/screens/siteWidget.dart';
 
 class CardSmall extends StatelessWidget {
-  CardSmall(
-      {this.title = "Placeholder Title",
-      this.cta = "",
-      this.img = "https://via.placeholder.com/200",
-      this.rate = 5,
-      this.flex = 1,
-      this.tap = defaultFunc});
 
-  final String cta;
-  final String img;
-  final Function tap;
-  final String title;
-  final int flex;
-  final double rate;
-  Map<String, String> site = {};
+  late Spot spot;
+
+  CardSmall(Spot spot){
+    this.spot = spot;
+  }
 
   static defaultFunc() {
     print("the function works!");
@@ -32,11 +24,7 @@ class CardSmall extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Site({
-              "title": title,
-              "Description": cta,
-              "img": img
-              }))
+              MaterialPageRoute(builder: (context) => Site(spot))
             );
           },
           child: Card(
@@ -52,7 +40,7 @@ class CardSmall extends StatelessWidget {
                               topLeft: Radius.circular(6.0),
                               topRight: Radius.circular(6.0)),
                           image: DecorationImage(
-                            image: NetworkImage(img),
+                            image: NetworkImage(spot.image),
                           ))),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -61,12 +49,12 @@ class CardSmall extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title,
+                        Text(spot.spotName,
                             style: TextStyle(
                                 color: ThemeColors.header, fontSize: 22)),
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0),
-                          child: Text(cta,
+                          child: Text(spot.description,
                               style: TextStyle(
                                 color: ThemeColors.text,
                                 fontSize: 17,

@@ -32,18 +32,6 @@ class UpdateHueca extends StatelessWidget {
       padding: EdgeInsets.only(left: 24.0, right: 24.0,bottom: 25, top: 25),
       child: Column(
         children: [
-          CardSmall(
-              cta: homeCards["hueca1"]!['Descripcion'].toString(),
-              title: homeCards["hueca1"]!['title'].toString(),
-              img: homeCards["hueca1"]!['image'].toString(),
-              tap: () {
-              }),
-          CardSmall(
-              cta: homeCards["hueca2"]!['Descripcion'].toString(),
-              title: homeCards["hueca2"]!['title'].toString(),
-              img: homeCards["hueca2"]!['image'].toString(),
-              tap: () {
-              }),
         ],
       ),
     );

@@ -13,19 +13,20 @@ List<List<String>> comments = [
 final newComments = <String>[];
 
 class Site extends StatelessWidget {
-  Site(Map<String, String> site) {
-    this.site = site;
+  late Spot spot;
+
+  Site(Spot spot) {
+    this.spot = spot;
   }
-  Map<String, String> site = {};
+
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    print(site["img"]);
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.site["title"].toString()),
+        title: Text(spot.spotName),
       ),
       body: Center(
         child: Container(
@@ -36,7 +37,7 @@ class Site extends StatelessWidget {
                       topLeft: Radius.circular(6.0),
                       topRight: Radius.circular(6.0)),
                   image: DecorationImage(
-                    image: NetworkImage(this.site["img"].toString()),
+                    image: NetworkImage(spot.image),
                     fit: BoxFit.cover,
                   )),
             ),
@@ -48,13 +49,13 @@ class Site extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network(site["img"].toString(), fit: BoxFit.cover),
-                  Text(this.site["title"].toString(),
+                  Image.network(spot.image, fit: BoxFit.cover),
+                  Text(spot.spotName,
                       style:
                           TextStyle(color: ThemeColors.header, fontSize: 28)),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
-                    child: Text(this.site["Description"].toString(),
+                    child: Text(spot.description,
                         style: TextStyle(
                           color: ThemeColors.text,
                           fontSize: 14,

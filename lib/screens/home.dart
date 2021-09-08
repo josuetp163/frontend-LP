@@ -80,10 +80,6 @@ class Home extends StatelessWidget {
 
   Widget _listaSpots(Spot spot) {
     print(spot);
-    return CardSmall(
-      cta: spot.description,
-      title: spot.spotName,
-      img: spot.image,
-    );
+    return new CardSmall(spot);
   }
 }
