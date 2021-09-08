@@ -1,4 +1,4 @@
-#Tue Aug 31 18:22:37 COT 2021
+#Tue Sep 07 19:49:57 COT 2021
 base.0=D\:\\Universidad\\6 Semestre\\Lenguajes de Programacion\\Proyecto2\\frontend\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

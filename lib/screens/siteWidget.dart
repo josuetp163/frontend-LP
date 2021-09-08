@@ -1,8 +1,12 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:frontend/constants/theme.dart';
+import 'package:frontend/models/Commentary.dart';
 
 import 'package:frontend/models/Spot.dart';
+import 'package:frontend/services/commentaryServ.dart';
 import 'package:frontend/services/spotServ.dart';
 
 List<List<String>> comments = [
@@ -13,7 +17,8 @@ List<List<String>> comments = [
 final newComments = <String>[];
 
 class Site extends StatelessWidget {
-  late Spot spot;
+  Spot spot;
+  final CommentaryHttp commentServ = new CommentaryHttp();
 
   Site(Spot spot) {
     this.spot = spot;
@@ -30,22 +35,10 @@ class Site extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          child: Column(children: [
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(6.0),
-                      topRight: Radius.circular(6.0)),
-                  image: DecorationImage(
-                    image: NetworkImage(spot.image),
-                    fit: BoxFit.cover,
-                  )),
-            ),
-            Flexible(
-                child: Padding(
-              padding: const EdgeInsets.only(
+          child: Padding(
+                padding: const EdgeInsets.only(
                   right: 20.0, top: 20.0, bottom: 15.0, left: 20.0),
-              child: Column(
+                child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,15 +64,36 @@ class Site extends StatelessWidget {
                       onRatingUpdate: (rating) {
                         print(rating);
                       }),
-                  Expanded(
-                    child: ListView(
-                      children: _createComments(comments),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Text("Comentarios",
+                        style: TextStyle(
+                          color: ThemeColors.text,
+                          fontSize: 14,
+                        )),
                   ),
+                  Container(
+                    child: FutureBuilder(
+                        future: commentServ.getComments(spot.id),
+                        builder:
+                            (context, AsyncSnapshot<List<Commentary>> snapshot) {
+                            if (snapshot.hasData && !snapshot.data.isEmpty) {
+                              final comments = snapshot.data;
+                              return ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                itemCount: comments.length,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context,i) => _createComment(comments[i])
+                              );
+                            }
+                            return Text("No funciona");
+                          }
+                        ),
+                  )
                 ],
               ),
-            )),
-          ]),
+            ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -151,7 +165,7 @@ class Site extends StatelessWidget {
                 child: Text("Comentar"),
                 onPressed: () {
                   // Validate returns true if the form is valid, or false otherwise.
-                  if (_formKey.currentState!.validate()) {
+                  if (_formKey.currentState.validate()) {
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     comments.add(newComments);
@@ -164,18 +178,12 @@ class Site extends StatelessWidget {
         });
   }
 
-  List<Widget> _createComments(comments) {
-    final lista = <Widget>[];
-    for (List<String> opt in comments) {
-      final tempWidget = ListTile(
-        title: Text(opt[0]),
-        subtitle: Text(opt[1]),
-      );
-      lista.add(tempWidget);
-      lista.add(Divider());
-    }
-    final SpotHttp spotserv = new SpotHttp();
-    spotserv.getSpotList();
-    return lista;
+  Widget _createComment(Commentary comment) {
+    return Card(
+      child: ListTile(
+        title: Text(comment.userName),
+        subtitle: Text(comment.description),
+      )
+    );
   }
 }

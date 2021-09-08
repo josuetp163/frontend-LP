@@ -8,19 +8,15 @@ part of 'Commentary.dart';
 
 Commentary _$CommentaryFromJson(Map<String, dynamic> json) {
   return Commentary(
-    id: json['id'] as int?,
     description: json['description'] as String,
     score: json['score'] as String,
-    userName: json['userName'] as String,
-    spot: Spot.fromJson(json['spot'] as Map<String, dynamic>),
+    userName: json['userName'] as String
   );
 }
 
 Map<String, dynamic> _$CommentaryToJson(Commentary instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'description': instance.description,
       'score': instance.score,
-      'userName': instance.userName,
-      'spot': instance.spot,
+      'userName': instance.userName
     };
