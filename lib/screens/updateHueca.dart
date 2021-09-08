@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:frontend/constants/theme.dart';
 import 'package:frontend/widgets/card-small.dart';
+import 'package:frontend/widgets/spot-card-update.dart';
+
+
+import 'package:frontend/models/Spot.dart';
+import 'package:frontend/services/spotServ.dart';
 
 //widgets
 
@@ -30,10 +35,25 @@ class UpdateHueca extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 24.0, right: 24.0,bottom: 25, top: 25),
-      child: Column(
-        children: [
-        ],
-      ),
+      child: FutureBuilder(
+          future: new SpotHttp().getSpotList(),
+          builder:
+              (context, AsyncSnapshot<List<Spot>> snapshot) {
+            if (snapshot.hasData) {
+              final spots = snapshot.data;
+              return ListView.builder(
+                  itemCount: spots!.length,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context,i) => _listaSpots(spots[i])
+              );
+            }
+            return Text("No funciona");
+          }),
     );
+  }
+
+  Widget _listaSpots(Spot spot) {
+    print(spot);
+    return new SpotCardUpdate(spot);
   }
 }
