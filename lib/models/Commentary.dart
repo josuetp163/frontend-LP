@@ -8,14 +8,12 @@ class Commentary {
   late String description;
   late String score;
   late String userName;
-  Spot spot;
 
   Commentary(
       {this.id,
       required this.description,
       required this.score,
-      required this.userName,
-      required this.spot});
+      required this.userName});
 
   @override
   String toString() {

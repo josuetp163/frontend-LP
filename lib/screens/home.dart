@@ -79,7 +79,6 @@ class Home extends StatelessWidget {
 
 
   Widget _listaSpots(Spot spot) {
-    print(spot);
     return new CardSmall(spot);
   }
 }
